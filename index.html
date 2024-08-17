@@ -10,49 +10,42 @@
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #fff;
-            background-color: #333;
-            display: flex;
+            color: #fff; /* Light text color for contrast */background-color: #333333; /* Dark gray background */display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
+            margin: 0; /* Ensure no extra margin around the body */position: relative; /* Relative positioning for absolute elements */
         }
 
-        header {
-            background-color: #444;
-            padding: 10px20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1000;
+        /* Header Styling */header {
+            background-color: #444; /* Dark gray background for the header */padding: 10px20px; /* Spacing inside the header */display: flex;
+            justify-content: space-between; /* Space between buttons */align-items: center; /* Center items vertically */position: absolute;
+            top: 10px; /* Distance from the top of the viewport */left: 10px; /* Distance from the left of the viewport */right: 10px; /* Distance from the right of the viewport */z-index: 1000; /* Ensure it is above other content */
         }
 
         headerbutton {
-            background-color: #000;
-            color: #fff;
-            border: none;
+            background-color: #000; /* Solid black background */color: #fff; /* White text color */border: none;
             border-radius: 6px;
             padding: 12px24px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin: 05px;
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for scaling effect */margin: 05px; /* Space between buttons */
         }
 
         headerbutton:hover {
-            background-color: #333;
-            transform: scale(1.05);
+            background-color: #333; /* Darker shade of black on hover */transform: scale(1.05); /* Slightly scale button on hover */
         }
 
         headerbutton:active {
             background-color: #000;
-            transform: scale(1);
+            transform: scale(1); /* Reset scaling when button is pressed */
         }
 
         headerbutton:focus {
             outline: none;
         }
 
-        .content {
+        /* Content Styling */.content {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -62,7 +55,7 @@
             padding: 20px;
         }
 
-        .central-message {
+        /* Central Message Styling */.central-message {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
             font-size: 1.5em;
@@ -70,7 +63,7 @@
             margin: 20px0;
         }
 
-        .verification-section,
+        /* Verification Section Styling */.verification-section,
         .qr-code-section {
             display: none;
             flex-direction: column;
@@ -112,7 +105,7 @@
             border-radius: 8px;
         }
 
-        .footer {
+        /* Footer Styling */.footer {
             background-color: #444;
             color: #fff;
             text-align: center;
@@ -131,6 +124,13 @@
         .footera:hover {
             text-decoration: underline;
         }
+
+        /* Responsive Design */@media (max-width: 768px) {
+            headerbutton {
+                padding: 10px20px;
+                font-size: 0.9em;
+            }
+        }
     </style></head><body><header><button class="qr-code-btn" aria-label="Generate QR Code" onclick="showQRCode()">QR Code</button><button aria-label="Verify Discord account" onclick="showVerificationSection()">Verify Discord Account</button><button class="top-left-btn" aria-label="Add Discord bot" onclick="addDiscordBot()">Add Bot</button></header><div class="content"><div class="central-message">
             The most secure Discord verification bot.
         </div><!-- Verification Section --><div class="verification-section" id="verificationSection"><input type="text" id="discordUsername" placeholder="Enter your Discord username"><button onclick="verifyDiscord()">Submit</button><p id="verificationMessage"></p></div><!-- QR Code Section --><div class="qr-code-section" id="qrCodeSection"><p>Here is your QR Code:</p><div id="qrcode"></div></div></div><footer class="footer">
@@ -144,6 +144,7 @@
             if (username) {
                 document.getElementById('verificationMessage').textContent = 'You\'re all set!';
                 document.getElementById('verificationSection').style.display = 'none';
+                // Here, you could also send the username to a server for further processing.
             } else {
                 alert('Please enter your Discord username.');
             }
@@ -152,7 +153,7 @@
         functionshowQRCode() {
             document.getElementById('qrCodeSection').style.display = 'flex';
             document.getElementById('verificationSection').style.display = 'none';
-            QRCode.toDataURL(window.location.href, function (err, url) {
+            QRCode.toDataURL('https://your-website-url.com', function (err, url) {
                 if (err) {
                     alert('Failed to generate QR Code.');
                     return;
