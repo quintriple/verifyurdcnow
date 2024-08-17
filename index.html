@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Discord Verification</title><link rel="stylesheet" href="styles.css"><style>/* Import Google Font */@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #444;
+            padding: 10px20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+        }
+
+        headerbutton {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin: 05px;
+        }
+
+        headerbutton:hover {
+            background-color: #333;
+            transform: scale(1.05);
+        }
+
+        headerbutton:active {
+            background-color: #000;
+            transform: scale(1);
+        }
+
+        headerbutton:focus {
+            outline: none;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .central-message {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.5em;
+            color: #fff;
+            margin: 20px0;
+        }
+
+        .verification-section,
+        .qr-code-section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .verification-sectioninput {
+            padding: 10px;
+            border: 1px solid #fff;
+            border-radius: 6px;
+            background-color: #444;
+            color: #fff;
+            margin: 10px0;
+        }
+
+        .verification-sectionbutton {
+            background-color: #000;
+            color: #fff;
+            padding: 10px20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .verification-sectionbutton:hover {
+            background-color: #333;
+        }
+
+        .verification-sectionbutton:active {
+            background-color: #000;
+        }
+
+        .qr-code-sectionimg {
+            margin-top: 20px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .footer {
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footera {
+            color: #fff;
+            text-decoration: none;
+            margin: 010px;
+        }
+
+        .footera:hover {
+            text-decoration: underline;
+        }
+    </style></head><body><header><button class="qr-code-btn" aria-label="Generate QR Code" onclick="showQRCode()">QR Code</button><button aria-label="Verify Discord account" onclick="showVerificationSection()">Verify Discord Account</button><button class="top-left-btn" aria-label="Add Discord bot" onclick="addDiscordBot()">Add Bot</button></header><div class="content"><div class="central-message">
+            The most secure Discord verification bot.
+        </div><!-- Verification Section --><div class="verification-section" id="verificationSection"><input type="text" id="discordUsername" placeholder="Enter your Discord username"><button onclick="verifyDiscord()">Submit</button><p id="verificationMessage"></p></div><!-- QR Code Section --><div class="qr-code-section" id="qrCodeSection"><p>Here is your QR Code:</p><div id="qrcode"></div></div></div><footer class="footer">
+        © Yvng Solutions | <ahref="#">About</a> | <ahref="#">FAQ</a> | <ahref="#">Wiki</a> | <ahref="#">Inc.</a> | <ahref="#">Donate</a> | <ahref="https://discord.com/oauth2/authorize?client_id=1274129476665606178&permissions=8&scope=bot"target="_blank">Get an Invite</a></footer><script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script><script>functionshowVerificationSection() {
+            document.getElementById('verificationSection').style.display = 'flex';
+            document.getElementById('qrCodeSection').style.display = 'none';
+        }
+
+        functionverifyDiscord() {
+            const username = document.getElementById('discordUsername').value.trim();
+            if (username) {
+                document.getElementById('verificationMessage').textContent = 'You\'re all set!';
+                document.getElementById('verificationSection').style.display = 'none';
+            } else {
+                alert('Please enter your Discord username.');
+            }
+        }
+
+        functionshowQRCode() {
+            document.getElementById('qrCodeSection').style.display = 'flex';
+            document.getElementById('verificationSection').style.display = 'none';
+            QRCode.toDataURL(window.location.href, function (err, url) {
+                if (err) {
+                    alert('Failed to generate QR Code.');
+                    return;
+                }
+                const img = document.createElement('img');
+                img.src = url;
+                const qrcodeContainer = document.getElementById('qrcode');
+                qrcodeContainer.innerHTML = ''; // Clear previous QR codes
+                qrcodeContainer.appendChild(img);
+            });
+        }
+
+        functionaddDiscordBot() {
+            const botInviteUrl = 'https://discord.com/oauth2/authorize?client_id=1274129476665606178&permissions=8&integration_type=0&scope=bot';
+            window.open(botInviteUrl, '_blank');
+        }
+    </script></body></html>
