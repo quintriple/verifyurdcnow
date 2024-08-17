@@ -1,0 +1,110 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #fff; /* Light text color for contrast */
+    background-color: #333333; /* Dark gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Ensure no extra margin around the body */
+    position: relative; /* Relative positioning for absolute elements */
+}
+
+header {
+    position: absolute;
+    top: 10px; /* Distance from the top of the viewport */
+    left: 10px; /* Distance from the left of the viewport */
+    right: 10px; /* Distance from the right of the viewport */
+    display: flex;
+    justify-content: space-between; /* Space between the buttons */
+    width: calc(100% - 20px); /* Full width minus padding */
+}
+
+button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #000; /* Solid black background */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for scaling effect */
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #333; /* Darker shade of black on hover */
+    transform: scale(1.05); /* Slightly scale button on hover */
+}
+
+button:active {
+    background-color: #000;
+    transform: scale(1); /* Reset scaling when button is pressed */
+}
+
+button:focus {
+    outline: none;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Center content */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Specific button styles for header */
+.top-left-btn {
+    background-color: #000; /* Solid black background */
+    color: #fff; /* White text color */
+}
+
+.qr-code-btn {
+    background-color: #000; /* Solid black background */
+    color: #fff; /* White text color */
+}
+
+/* Hidden input field */
+#adminCommand {
+    position: absolute;
+    top: -9999px; /* Hide off-screen */
+    left: -9999px; /* Hide off-screen */
+    width: 1px; /* Minimal width */
+    height: 1px; /* Minimal height */
+    opacity: 0; /* Fully transparent */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
